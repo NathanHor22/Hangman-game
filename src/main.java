@@ -28,11 +28,17 @@ public class main {
         //Create a list to store the guessed letters
         List<Character> guessedLetters = new ArrayList<>();
 
-        
+        int wrongCount = 0;
         //loops the guessing process until the word is guessed
         while(true) {
+            //Print the hangman figure based on the number of incorrect guesses
+            //figure out a more efficient way to do this
+          
 
-            getLetterGuess(kinput, word, guessedLetters);
+            printCurrentWordList(word, guessedLetters);
+           if(!getLetterGuess(kinput, word, guessedLetters)) {
+                wrongCount++;
+           }
             //Win condition, the player has guessed all the letters in the word
             if(printCurrentWordList(word, guessedLetters)) {
                 System.out.println("You win! Done now bossman");
@@ -41,7 +47,7 @@ public class main {
             //Player in process of guessing the word
             System.out.println("Enter your guess bossman");
             if(kinput.nextLine().toLowerCase().equals(word)) {
-                System.out.println("You guessed the word! Skibidi");
+                System.out.println("You guessed the word! Bombaclat");
                 break;
             }
             else {
@@ -49,13 +55,16 @@ public class main {
                 System.out.println("Wrong guess, try again!");
             }
         }
-    }
+    
 
-    private static void getLetterGuess(Scanner kinput, String word, List<Character> guessedLetters) {
-        System.out.println("Skibidi enter a letter tung tung tung sahur");
+
+    private static boolean getLetterGuess(Scanner kinput, String word, List<Character> guessedLetters) {
+        System.out.println("Skibidi enter a letter tung tung tung sahur:");
         String letterGuess = kinput.nextLine().toLowerCase();
         //Check if the letter is in the word
         guessedLetters.add(letterGuess.charAt(0));
+
+        return word.contains(letterGuess);
 
     }
 
