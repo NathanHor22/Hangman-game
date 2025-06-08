@@ -9,6 +9,7 @@ public class main {
     public static void main(String[] args) throws FileNotFoundException {
         
         Scanner scanner = new Scanner(new File("C:\\Users\\damna\\Documents\\GitHub\\Hangman-game\\dictionary words.txt"));
+        Scanner kinput = new Scanner(System.in);
         //input the words in the text file into the arraylist
         List<String> words = new ArrayList<>();
 
@@ -24,5 +25,54 @@ public class main {
 
         //Testing
         System.out.println(word);
+        //Create a list to store the guessed letters
+        List<Character> guessedLetters = new ArrayList<>();
+
+        
+        //loops the guessing process until the word is guessed
+        while(true) {
+
+            getLetterGuess(kinput, word, guessedLetters);
+            //Win condition, the player has guessed all the letters in the word
+            if(printCurrentWordList(word, guessedLetters)) {
+                System.out.println("You win! Done now bossman");
+                break;
+            }
+            //Player in process of guessing the word
+            System.out.println("Enter your guess bossman");
+            if(kinput.nextLine().toLowerCase().equals(word)) {
+                System.out.println("You guessed the word! Skibidi");
+                break;
+            }
+            else {
+                //Player has guessed the word incorrectly
+                System.out.println("Wrong guess, try again!");
+            }
+        }
+    }
+
+    private static void getLetterGuess(Scanner kinput, String word, List<Character> guessedLetters) {
+        System.out.println("Skibidi enter a letter tung tung tung sahur");
+        String letterGuess = kinput.nextLine().toLowerCase();
+        //Check if the letter is in the word
+        guessedLetters.add(letterGuess.charAt(0));
+
+    }
+
+    private static boolean printCurrentWordList(String word, List<Character> guessedLetters) {
+        //Create a variable to keep track of the number of incorrect guesses
+        int correctCount = 0;
+        for (int i = 0; i < word.length(); i++) {
+            if(guessedLetters.contains(word.charAt(i))) {
+                System.out.print(word.charAt(i) + " ");
+                correctCount++;
+            } else {
+                System.out.print("_ ");
+            }
+        }
+        //System.out.println();
+
+        return (word.length() == correctCount);
+
     }
 }
