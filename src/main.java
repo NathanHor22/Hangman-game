@@ -8,8 +8,7 @@ import java.io.FileNotFoundException;
 public class main {
     public static void main(String[] args) throws FileNotFoundException {
         
-        Scanner scanner = new Scanner(new File("C:\Users\damna\Documents\GitHub\Hangman-game\dictionary words.txt"));
-
+        Scanner scanner = new Scanner(new File("C:\\Users\\damna\\Documents\\GitHub\\Hangman-game\\dictionary words.txt"));
         //input the words in the text file into the arraylist
         List<String> words = new ArrayList<>();
 
