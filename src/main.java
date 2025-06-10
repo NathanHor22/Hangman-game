@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 
 public class main {
     public static void main(String[] args) throws FileNotFoundException {
-        
+        //Text file containing the words for the game
         Scanner scanner = new Scanner(new File("C:\\Users\\damna\\Documents\\GitHub\\Hangman-game\\dictionary words.txt"));
         Scanner kinput = new Scanner(System.in);
         //input the words in the text file into the arraylist
@@ -30,12 +30,40 @@ public class main {
 
         int wrongCount = 0;
         //loops the guessing process until the word is guessed
+        //Print the hangman figure based on the number of incorrect guesses
+        //figure out a more efficient way to do this
         while(true) {
-            //Print the hangman figure based on the number of incorrect guesses
-            //figure out a more efficient way to do this
-          
+                System.out.println(" -------");
+    System.out.println(" |     |");
+    if (wrongCount >= 1) {
+      System.out.println(" O");
+    }
+    
+    if (wrongCount >= 2) {
+      System.out.print("\\ ");
+      if (wrongCount >= 3) {
+        System.out.println("/");
+      }
+      else {
+        System.out.println("");
+      }
+    }
+    
+    if (wrongCount >= 4) {
+      System.out.println(" |");
+    }
+    
+    if (wrongCount >= 5) {
+      System.out.print("/ ");
+      if (wrongCount >= 6) {
+        System.out.println("\\");
+      }
+      else {
+        System.out.println("");
+      }
+    }
 
-            printCurrentWordList(word, guessedLetters);
+        printCurrentWordList(word, guessedLetters);
            if(!getLetterGuess(kinput, word, guessedLetters)) {
                 wrongCount++;
            }
@@ -55,9 +83,8 @@ public class main {
                 System.out.println("Wrong guess, try again!");
             }
         }
+        }
     
-
-
     private static boolean getLetterGuess(Scanner kinput, String word, List<Character> guessedLetters) {
         System.out.println("Skibidi enter a letter tung tung tung sahur:");
         String letterGuess = kinput.nextLine().toLowerCase();
