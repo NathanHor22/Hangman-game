@@ -33,34 +33,11 @@ public class main {
         //Print the hangman figure based on the number of incorrect guesses
         //figure out a more efficient way to do this
         while(true) {
-                System.out.println(" -------");
-    System.out.println(" |     |");
-    if (wrongCount >= 1) {
-      System.out.println(" O");
-    }
-    
-    if (wrongCount >= 2) {
-      System.out.print("\\ ");
-      if (wrongCount >= 3) {
-        System.out.println("/");
-      }
-      else {
-        System.out.println("");
-      }
-    }
-    
-    if (wrongCount >= 4) {
-      System.out.println(" |");
-    }
-    
-    if (wrongCount >= 5) {
-      System.out.print("/ ");
-      if (wrongCount >= 6) {
-        System.out.println("\\");
-      }
-      else {
-        System.out.println("");
-      }
+        printHangedMan(wrongCount);
+        //If the player has guessed the word incorrectly 6 times, they lose
+        if(wrongCount >= 6) {
+            System.out.println("You lose! The word was: " + word);
+            break;
     }
 
         printCurrentWordList(word, guessedLetters);
@@ -94,6 +71,40 @@ public class main {
         return word.contains(letterGuess);
 
     }
+
+ private static void printHangedMan(Integer wrongCount) {
+    System.out.println(" -------");
+    System.out.println(" |     |");
+    if (wrongCount >= 1) {
+      System.out.println(" O");
+    }
+    
+    if (wrongCount >= 2) {
+      System.out.print("\\ ");
+      if (wrongCount >= 3) {
+        System.out.println("/");
+      }
+      else {
+        System.out.println("");
+      }
+    }
+    
+    if (wrongCount >= 4) {
+      System.out.println(" |");
+    }
+    
+    if (wrongCount >= 5) {
+      System.out.print("/ ");
+      if (wrongCount >= 6) {
+        System.out.println("\\");
+      }
+      else {
+        System.out.println("");
+      }
+    }
+    System.out.println("");
+    System.out.println("");
+  }
 
     private static boolean printCurrentWordList(String word, List<Character> guessedLetters) {
         //Create a variable to keep track of the number of incorrect guesses
