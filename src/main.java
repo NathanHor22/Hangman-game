@@ -7,9 +7,18 @@ import java.io.FileNotFoundException;
 
 public class main {
     public static void main(String[] args) throws FileNotFoundException {
+
+        Scanner kinput = new Scanner(System.in);
+
+
+        //2 player implementation of hangman
+        System.out.println("1 or 2 players?");
+        String players = kinput.nextLine().toLowerCase();
+        String word;
+
+        if (players.equals("1")) {
         //Text file containing the words for the game
         Scanner scanner = new Scanner(new File("C:\\Users\\damna\\Documents\\GitHub\\Hangman-game\\dictionary words.txt"));
-        Scanner kinput = new Scanner(System.in);
         //input the words in the text file into the arraylist
         List<String> words = new ArrayList<>();
 
@@ -21,10 +30,19 @@ public class main {
         Random rand = new Random();
 
         //Picking a word from the list to be used for the game
-        String word = words.get(rand.nextInt(words.size()));
+        word = words.get(rand.nextInt(words.size()));
+        }
+        else {
+            System.out.println("Player 1, enter the word to be guessed:");
+            word = kinput.nextLine().toLowerCase();
+            //Clear the console for player 2 and to avoid cheating
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("Ready for player 2! Good luck!");
+        }
+
 
         //Testing
-        System.out.println(word);
+        //System.out.println(word);
         //Create a list to store the guessed letters
         List<Character> guessedLetters = new ArrayList<>();
 
